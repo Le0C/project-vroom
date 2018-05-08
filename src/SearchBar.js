@@ -24,7 +24,7 @@ class SearchBar extends Component {
     }]
   }
   render() {
-    console.log(this.props);
+    console.log(this.props)
     const positions = [-1.16, -0.58, 0, 0.58, 1.16]
     if (this.props.images.length === 0) {
       return null;
@@ -53,7 +53,7 @@ class SearchBar extends Component {
                 position='0 -0.25 0.01'
                 events={{
                   mouseenter: () => {
-                    this.props.addImage(this.state.searchImages[i].url)
+                    this.props.addImage(this.props.images[i].M.url.S)
                   }
                 }}
               />

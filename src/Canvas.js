@@ -87,7 +87,10 @@ class Canvas extends Component {
     if (this.props.images.length === 0) {
       return null;
     } else {
-      return <SearchBar images={this.props.images} />
+      return <SearchBar
+        images={this.props.images}
+        addImage={this.addImage}
+      />
     }
   }
   loadMoveButton = (e) => {
