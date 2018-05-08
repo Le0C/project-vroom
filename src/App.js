@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
+import blueLex from './lex.png'
+import greenLex from './lex-green.png';
+
 import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import ReactDOM from 'react-dom';
 
 
-import Cursor from './Cursor'
-import Room from './Room'
 import HomePage from './HomePage';
+
+import Canvas from './Canvas'
+import Lex from './Lex'
+import Cursor from './Cursor'
+import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
+import { setPusherClient } from 'react-pusher'
+import Pusher from 'pusher-js'
+import { pusherConfig } from './config/pusherConfig'
 
 class App extends Component {
   state = {
     isOnHomePage: true,
     renderPreview: false,
     message: "Passive",
+    queryResults: [],
     panoBackgrounds: [
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525442332/MilleniumFalcon8K.jpg',
@@ -38,6 +48,16 @@ class App extends Component {
     chosenBackgroundImage: ''
   };
 
+  componentDidMount() {
+    const pusherClient = new Pusher(pusherConfig.key, { cluster: pusherConfig.cluster, encrypted: true })
+    const channel = pusherClient.subscribe(pusherConfig.channel_name)
+    channel.bind('my-event', data => {
+      let queryResults = Object.entries(data)[0][1][0].dynamodb.NewImage.message.L
+      this.setState({ queryResults })
+      console.log(this.state.queryResults)
+    })
+  }
+
   render() {
     return (
       <Scene events={{
@@ -58,13 +78,30 @@ class App extends Component {
             }}
             material={{ color: 'white', shader: 'flat' }}
           />
-
+          <Entity
+            primitive='a-plane'
+            material={{ transparent: true }}
+            height='0.15'
+            width='0.15'
+            src={this.changeIconColour(this.state.message)}
+            position='0 0.75 -1'
+          />
         </Entity>
+
+        <Lex
+          bot={BOT}
+          accessId={ACCESS_ID}
+          secretKey={SECRET_KEY}
+          message={this.state.message}
+          changeMessageTo={this.changeMessageTo} />
 
         {this.chooseRoom()}
 
       </Scene >
     );
+  }
+  changeIconColour = (message) => {
+    return message === 'Passive' ? blueLex : greenLex;
   }
   setPanoImage = (image) => {
 
@@ -92,7 +129,7 @@ class App extends Component {
         setPanoImage={this.setPanoImage}
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
-    } else return <Room />
+    } else return <Canvas />
   }
 
 }

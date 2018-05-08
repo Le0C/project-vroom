@@ -1,27 +1,49 @@
 import React, { Component } from 'react';
+import annyang from 'annyang';
 import 'aframe';
-import { Entity } from 'aframe-react';
+import { Entity, Scene } from 'aframe-react';
 
 import AWS from 'aws-sdk';
 
 import LexAudio from './utils/lexAudio';
+import lex from './lex.png';
 
-class Button extends Component {
+
+class Lex extends Component {
+
+  handleBallColour = (message) => {
+    return message === 'Passive...' ? 'red' : 'yellow'
+  }
+
+  componentDidMount() {
+    const handleAudioControlClick = this.handleAudioControlClick
+
+    if (annyang) {
+      // Let's define a command.
+      var commands = {
+        'bananas': function () {
+          handleAudioControlClick()
+        }
+      };
+
+      // Add our commands to annyang
+      annyang.addCommands(commands);
+
+      // Start listening.
+      annyang.start();
+    }
+  }
 
   render() {
+
     return (
-      <Entity primitive='a-sphere'
-        color='yellow' radius='0.15'
-        position='-0.5 -0 -0.5'
-        events={{
-          mouseenter: this.handleAudioControlClick,
-        }} >
-      </Entity>
+      null
     )
   }
   handleAudioControlClick = (e) => {
+    annyang.pause()
     const { bot, accessId, secretKey, changeMessageTo } = this.props;
-
+    const that = this;
     AWS.config.credentials = new AWS.Credentials(accessId, secretKey, null);
     AWS.config.region = 'eu-west-1';
 
@@ -47,7 +69,8 @@ class Button extends Component {
     this
       .conversation
       .advanceConversation();
+    annyang.start()
   }
 }
 
-export default Button;
+export default Lex;

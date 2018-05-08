@@ -9,25 +9,7 @@
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
   <script src="../node_modules/aframe/build/aframe.js"></script>
-  <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
-  <script>
-    var pusher = new Pusher('LETTER NUMBER KEY', {
-      cluster: 'eu',
-      encrypted: true
-    });
-
-    let resultArray = []
-
-    var channel = pusher.subscribe('APP NAME');
-    channel.bind('my-event', function (data) {
-      console.log(Object.entries(data)[0][1].Records[0].dynamodb.NewImage.message.L)
-      alert(Object.entries(data)[0][1].Records[0].dynamodb.NewImage.message.L);
-      resultArray = Object.entries(data)[0][1].Records[0].dynamodb.NewImage.message.L
-    });
-  </script>
-
-
-  <title>React App</title>
+  <title>Vroom</title>
 </head>
 
 <body>

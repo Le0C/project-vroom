@@ -62,7 +62,6 @@ class Canvas extends Component {
                   confirmDelete={this.state.currentImages[i].confirmDelete}
                   confirmLike={this.state.currentImages[i].confirmLike}
                   confirmMove={this.state.currentImages[i].confirmMove}
-
                   handleLike={this.handleLike}
                   handleDelete={this.handleDelete}
                   handleMove={this.handleMove}
