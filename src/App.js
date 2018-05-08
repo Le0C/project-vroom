@@ -17,11 +17,7 @@ import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
 import { setPusherClient } from 'react-pusher'
 import Pusher from 'pusher-js'
 import { pusherConfig } from './config/pusherConfig'
-<<<<<<< HEAD
-import SearchBar from './SearchBar';
-=======
 import BackgroundAudio from './BackgroundAudio';
->>>>>>> 6434b4b8534ffa54ce7e4b2d4b72154b57cb0f8d
 
 class App extends Component {
   state = {
@@ -146,12 +142,8 @@ class App extends Component {
         setPanoImage={this.setPanoImage}
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
-<<<<<<< HEAD
-    } else return <Canvas images={this.state.queryResults} />
-=======
     } else return <Canvas />
 
->>>>>>> 6434b4b8534ffa54ce7e4b2d4b72154b57cb0f8d
   }
 
 }
