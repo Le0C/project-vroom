@@ -44,8 +44,8 @@ class Canvas extends Component {
                 src={image.url}
                 animation__left={`property: position; to: ${image.xpos - 0.4} ${image.ypos} -2; dur: 500; startEvents: moved-left; easing: easeInOutQuad`}
                 animation__right={`property: position; to: ${image.xpos + 0.4} ${image.ypos} -2; dur: 500; startEvents: moved-right; easing: easeInOutQuad`}
-                animation__2={`property: scale; to: 0 0 0; dur: 490; startEvents: deleted`}
-                animation={`property: position; to: ${image.xpos} ${image.ypos + 0.025} -2; loop: true; dir: alternate; delay: ${Math.random() * 500} easing: easeInOutQuad`}>
+                // animation__delete={`property: scale; to: 0.1 0.1 0.1; dur: 490; startEvents: deleted`}
+                animation__hover={`property: position; to: ${image.xpos} ${image.ypos + 0.025} -2; loop: true; dir: alternate; delay: ${Math.random() * 500} easing: easeInOutQuad`}>
 
                 <Entity primitive='a-box'
                   depth='0.025'
@@ -64,7 +64,6 @@ class Canvas extends Component {
                   color='yellow'
                   width='1.1'
                   height='1.1'
-                  animation={`propert: scale; from: 0 0 0; startEvents: liked`}
                 />
 
                 <ButtonHolder
@@ -155,9 +154,10 @@ class Canvas extends Component {
   handleDelete = (e) => {
 
     let id = parseInt(e.target.id.slice(3))
-    document.getElementById(id).parentElement.emit('deleted')
+    document.getElementById(id).nextSibling.emit(`deleted`)
+    console.log(document.getElementById(id).nextSibling)
     let ImgArray = this.state.currentImages.filter((image) => {
-      if (image !== this.state.currentImages[id]) return image
+      if (image.uuid !== this.state.currentImages[id].uuid) return image
     })
     setTimeout(() => { this.setState({ currentImages: ImgArray }) }, 501)
   }
@@ -222,6 +222,7 @@ class Canvas extends Component {
     this.addImage()
   }
   addImage = (url) => {
+    const uuid = require('uuid/v1')
 
     let xpos, ypos, xrot, yrot;
     let i = this.state.currentImages.length + 1
@@ -246,7 +247,8 @@ class Canvas extends Component {
       confirmDelete: false,
       confirmLike: false,
       liked: false,
-      isMoving: false
+      isMoving: false,
+      uuid: uuid()
     }
     this.setState({ currentImages: [...this.state.currentImages, imgObj] })
   }

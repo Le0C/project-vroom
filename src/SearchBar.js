@@ -3,6 +3,7 @@ import 'aframe';
 import 'aframe-animation-component'
 import { Entity, Scene } from 'aframe-react';
 
+import ConditionalEntity from './ConditionalEntity'
 
 
 class SearchBar extends Component {
@@ -30,7 +31,7 @@ class SearchBar extends Component {
         {this.state.searchImages.map((image, i) => {
           if (i >= 5) return
           return <Entity>
-            <Entity
+            <ConditionalEntity
 
               primitive='a-box'
               position={`${positions[i]} -0.5 0`}
@@ -54,7 +55,7 @@ class SearchBar extends Component {
                   }
                 }}
               />
-            </Entity>
+            </ConditionalEntity>
           </Entity>
         })}
       </Entity>
