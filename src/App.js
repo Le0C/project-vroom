@@ -38,6 +38,8 @@ class App extends Component {
     chosenBackgroundImage: ''
   };
 
+
+
   render() {
     return (
       <Scene events={{
@@ -45,7 +47,6 @@ class App extends Component {
       }}>
 
         {this.renderWire()}
-
 
         <Entity primitive='a-camera'
           position='0 0 0.5' >
@@ -59,6 +60,18 @@ class App extends Component {
             }}
             material={{ color: 'white', shader: 'flat' }}
           />
+
+          <Entity
+            position='-0.9 -0.7 -1'
+            animation='property: rotation; loop: true; to: 0 0 360; easing: linear'
+            color='yellow'
+            geometry={{
+              primitive: 'ring',
+              radiusInner: 0.05,
+              radiusOuter: 0.1,
+            }}
+            primitive='a-ring'
+            theta-length='310' />
         </Entity>
 
         {this.chooseRoom()}
@@ -80,14 +93,18 @@ class App extends Component {
       src={this.state.chosenBackgroundImage} />
   }
 
-
+  roomConfirmed = () => {
+    this.setState({ isOnHomePage: !this.state.isOnHomePage })
+  }
   changeMessageTo = message => {
     this.setState({ message });
   };
   chooseRoom = () => {
     if (this.state.isOnHomePage) {
       return <HomePage panoBackgrounds={this.state.panoBackgrounds}
-        setPanoImage={this.setPanoImage} />
+        setPanoImage={this.setPanoImage}
+        renderPreview={this.state.renderPreview}
+        roomConfirmed={this.roomConfirmed} />
     } else return <Room />
   }
 

@@ -8,18 +8,31 @@ import HomeSphere from './HomePageSphere'
 class HomePage extends Component {
 
   render() {
-
-
-
     return (<Entity>
-
-      <Entity
-        text={{
-          value: 'Welcome to vRoom.',
-          color: 'black',
-          anchor: 'align'
-        }} />
-
+      <Entity primitive='a-plane'
+        position='0.3 0.4 -0.1'
+        opacity='0'
+        height='0.1'
+        width='0.5'>
+        <Entity
+          text={{
+            value: 'Welcome to vRoom.',
+            color: 'black',
+            anchor: 'center',
+          }} />
+      </Entity>
+      <Entity primitive='a-plane'
+        position='0.3 0.33 -0.1'
+        opacity='0'
+        height='0.1'
+        width='0.5'>
+        <Entity
+          text={{
+            value: 'Please select a theme.',
+            color: 'black',
+            anchor: 'center',
+          }} />
+      </Entity>
 
       {this.props.panoBackgrounds.map((image, i) => {
         return <Entity>
@@ -28,18 +41,23 @@ class HomePage extends Component {
       })}
 
       <Entity
-        primitive='a-box'
-        depth='0.025'
-        width='1.5'
-        color='yellow'
-        height='0.5'
-        position='0 -1.5 -2'
+        visible={this.props.renderPreview}
+        primitive='a-cylinder'
+        radius='0.09'
+        height='0.02'
+        rotation='180 -90 90'
+        src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525356822/like-outline.png'
+        position={`0 -0.5 -0.5`}
+        events={{
+          mouseenter: this.loadConfirm
+        }}
       />
 
     </Entity>)
   }
   loadConfirm = () => {
-
+    console.log('confirmed')
+    this.props.roomConfirmed()
   }
 }
 

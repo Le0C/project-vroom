@@ -9,18 +9,7 @@ import ConditionalEntity from './ConditionalEntity'
 
 class Canvas extends Component {
   state = {
-    currentImages: [{
-      xpos: 0,
-      ypos: 0,
-      xrot: 0,
-      url: 'https://pixabay.com/get/e833b3082bf6033ed1584d05fb1d4e9ee172e0d119ac104497f5c771afe4bcbf_1280.jpg',
-      buttonVisible: false,
-      liked: false,
-      confirmDelete: false,
-      confirmLike: false,
-      confirmMove: false,
-      isMoving: false,
-    }]
+    currentImages: []
   }
   render() {
     return (
@@ -159,7 +148,7 @@ class Canvas extends Component {
     let ImgArray = this.state.currentImages.filter((image) => {
       if (image.uuid !== this.state.currentImages[id].uuid) return image
     })
-    setTimeout(() => { this.setState({ currentImages: ImgArray }) }, 501)
+    this.setState({ currentImages: ImgArray })
   }
   handleLike = (e) => {
     let id = parseInt(e.target.id.slice(3))
