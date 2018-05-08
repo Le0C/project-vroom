@@ -16,6 +16,7 @@ import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
 import { setPusherClient } from 'react-pusher'
 import Pusher from 'pusher-js'
 import { pusherConfig } from './config/pusherConfig'
+import SearchBar from './SearchBar';
 
 class App extends Component {
   state = {
@@ -87,16 +88,17 @@ class App extends Component {
             position='0 0.75 -1'
           />
         </Entity>
-
         <Lex
           bot={BOT}
           accessId={ACCESS_ID}
           secretKey={SECRET_KEY}
           message={this.state.message}
           changeMessageTo={this.changeMessageTo} />
-
         {this.chooseRoom()}
 
+        {/* { return null? SearchBar : <SearchBar
+          images={this.state.queryResults}
+        />} */}
       </Scene >
     );
   }
@@ -129,7 +131,7 @@ class App extends Component {
         setPanoImage={this.setPanoImage}
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
-    } else return <Canvas />
+    } else return <Canvas images={this.state.queryResults} />
   }
 
 }

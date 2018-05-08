@@ -24,11 +24,13 @@ class SearchBar extends Component {
     }]
   }
   render() {
-
+    console.log(this.props);
     const positions = [-1.16, -0.58, 0, 0.58, 1.16]
-    return (
+    if (this.props.images.length === 0) {
+      return null;
+    } else return (
       <Entity>
-        {this.state.searchImages.map((image, i) => {
+        {this.props.images.map((image, i) => {
           if (i >= 5) return
           return <Entity>
             <ConditionalEntity
@@ -39,7 +41,7 @@ class SearchBar extends Component {
               height='0.4'
               depth={0.025}
               rotation='-45 0 0'
-              src={image.url}
+              src={image.M.url.S}
             >
 
               <Entity

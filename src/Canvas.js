@@ -78,12 +78,18 @@ class Canvas extends Component {
 
             </Entity>
           })}
-          <SearchBar addImage={this.addImage} />
+          {this.renderSearchBar()}
         </Entity>
       </Entity>
     )
   }
-
+  renderSearchBar = () => {
+    if (this.props.images.length === 0) {
+      return null;
+    } else {
+      return <SearchBar images={this.props.images} />
+    }
+  }
   loadMoveButton = (e) => {
     let id = parseInt(e.target.id.slice(3))
     let confirmToggle = Object.assign({}, this.state.currentImages[id])
