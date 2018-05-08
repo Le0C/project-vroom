@@ -212,7 +212,6 @@ class Canvas extends Component {
   }
   addImage = (url) => {
     const uuid = require('uuid/v1')
-
     let xpos, ypos, xrot, yrot;
     let i = this.state.currentImages.length + 1
     if (i % 2 > 0) {

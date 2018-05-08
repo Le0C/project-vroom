@@ -38,8 +38,6 @@ class App extends Component {
     chosenBackgroundImage: ''
   };
 
-
-
   render() {
     return (
       <Scene events={{
@@ -61,17 +59,6 @@ class App extends Component {
             material={{ color: 'white', shader: 'flat' }}
           />
 
-          <Entity
-            position='-0.9 -0.7 -1'
-            animation='property: rotation; loop: true; to: 0 0 360; easing: linear'
-            color='yellow'
-            geometry={{
-              primitive: 'ring',
-              radiusInner: 0.05,
-              radiusOuter: 0.1,
-            }}
-            primitive='a-ring'
-            theta-length='310' />
         </Entity>
 
         {this.chooseRoom()}
