@@ -11,6 +11,8 @@ class ButtonHolder extends Component {
     const {
       handleMoveLeft,
       handleMoveRight,
+      handleMoveDown,
+      handleMoveUp,
       index,
       visible,
       likeFunction,
@@ -136,6 +138,28 @@ class ButtonHolder extends Component {
             position='-0.5 0 0.12'
             events={{
               mouseenter: handleMoveLeft
+            }} />
+          <Entity
+            primitive='a-cylinder'
+            radius='0.18'
+            height='0.04'
+            rotation='270 90 90'
+            id={`lef${index}`}
+            src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525434525/arrow.png'
+            position='-0.9 0 0.12'
+            events={{
+              mouseenter: handleMoveUp
+            }} />
+          <Entity
+            primitive='a-cylinder'
+            radius='0.18'
+            height='0.04'
+            rotation='90 90 90'
+            id={`lef${index}`}
+            src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525434525/arrow.png'
+            position='.9 0 0.12'
+            events={{
+              mouseenter: handleMoveDown
             }} />
           <Entity
             primitive='a-cylinder'

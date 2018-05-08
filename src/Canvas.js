@@ -25,7 +25,7 @@ class Canvas extends Component {
                 confirmMove={this.state.currentImages[i].confirmMove}
                 isMoving={this.state.currentImages[i].isMoving}
                 imageXpos={image.xpos}
-                imageYpos={image.xpos}
+                imageYpos={image.ypos}
                 position={`${image.xpos} ${image.ypos} ${-2}`}
                 rotation={`${0} ${image.xrot} 0`}
                 depth={0.025}
@@ -68,6 +68,8 @@ class Canvas extends Component {
                   handleMove={this.handleMove}
                   handleMoveLeft={this.handleMoveLeft}
                   handleMoveRight={this.handleMoveRight}
+                  handleMoveUp={this.handleMoveUp}
+                  handleMoveDown={this.handleMoveDown}
                   likeFunction={this.loadLikeButton}
                   deleteFunction={this.loadDeleteButton}
                   moveFunction={this.loadMoveButton} />
@@ -163,31 +165,42 @@ class Canvas extends Component {
   }
 
   handleMoveLeft = (e) => {
-    console.log('move left')
     let id = parseInt(e.target.id.slice(3))
     document.getElementById(id).parentElement.emit('moved-left')
-
     let ImgArray = this.state.currentImages
     let ImgToMove = Object.assign({}, this.state.currentImages[id])
     ImgToMove.xpos = Number((ImgToMove.xpos - 0.4).toFixed(2))
-    console.log(ImgToMove.xpos)
     ImgToMove.xrot = ImgToMove.xpos * -12
     ImgArray[id] = ImgToMove
     setTimeout(() => { this.setState({ currentImages: ImgArray }) }, 550)
   }
   handleMoveRight = (e) => {
-    console.log('move right')
     let id = parseInt(e.target.id.slice(3))
     document.getElementById(id).parentElement.emit('moved-right')
-
     let ImgArray = this.state.currentImages
     let ImgToMove = Object.assign({}, this.state.currentImages[id])
     ImgToMove.xpos = Number((ImgToMove.xpos + 0.4).toFixed(2))
-    console.log(ImgToMove.xpos)
     ImgToMove.xrot = ImgToMove.xpos * -12
     ImgArray[id] = ImgToMove
     setTimeout(() => { this.setState({ currentImages: ImgArray }) }, 550)
 
+  }
+
+  handleMoveUp = (e) => {
+    let id = parseInt(e.target.id.slice(3))
+    let ImgArray = this.state.currentImages
+    let ImgToMove = Object.assign({}, this.state.currentImages[id])
+    ImgToMove.ypos = Number((ImgToMove.ypos + 0.4).toFixed(2))
+    ImgArray[id] = ImgToMove
+    this.setState({ currentImages: ImgArray })
+  }
+  handleMoveDown = (e) => {
+    let id = parseInt(e.target.id.slice(3))
+    let ImgArray = this.state.currentImages
+    let ImgToMove = Object.assign({}, this.state.currentImages[id])
+    ImgToMove.ypos = Number((ImgToMove.ypos - 0.4).toFixed(2))
+    ImgArray[id] = ImgToMove
+    this.setState({ currentImages: ImgArray })
   }
 
   handleHover = (e) => {
