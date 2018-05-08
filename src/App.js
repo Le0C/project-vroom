@@ -9,6 +9,7 @@ import ReactDOM from 'react-dom';
 
 import HomePage from './HomePage';
 
+
 import Canvas from './Canvas'
 import Lex from './Lex'
 import Cursor from './Cursor'
@@ -16,6 +17,7 @@ import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
 import { setPusherClient } from 'react-pusher'
 import Pusher from 'pusher-js'
 import { pusherConfig } from './config/pusherConfig'
+import BackgroundAudio from './BackgroundAudio';
 
 class App extends Component {
   state = {
@@ -26,26 +28,34 @@ class App extends Component {
     panoBackgrounds: [
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525442332/MilleniumFalcon8K.jpg',
-        name: 'Millenium Falcon'
+        name: 'Millenium Falcon',
+        audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525792087/Star_Wars_A_New_Hope_Soundtrack_-_11._Cantina_Band.mp3'
+
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351275/Heron_smaller.jpg',
-        name: 'Underwater'
+        name: 'Underwater',
+        audio: "https://res.cloudinary.com/dnuwifia4/video/upload/v1525786202/07074003.wav"
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351271/johnstone-hanson-island-forest-360.jpg',
-        name: 'Forest'
+        name: 'Forest',
+        audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525791588/07070192.wav'
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351274/Helvellyn_Striding_Edge_360_Panorama__Lake_District_-_June_09.jpg',
-        name: 'Mountain'
+        name: 'Mountain',
+        audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525792774/wind_edited.mp3'
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351271/Venice.Still001.jpg',
         name: 'Venice'
       },
     ],
-    chosenBackgroundImage: ''
+    chosenBackgroundImage: {
+      url: '',
+      audio: ''
+    }
   };
 
   componentDidMount() {
@@ -64,6 +74,8 @@ class App extends Component {
         mousemove: this.moveMouse
       }}>
 
+
+        <BackgroundAudio audioSource={this.state.chosenBackgroundImage} />
         {this.renderWire()}
 
         <Entity primitive='a-camera'
@@ -130,6 +142,7 @@ class App extends Component {
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
     } else return <Canvas />
+
   }
 
 }
