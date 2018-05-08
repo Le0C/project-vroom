@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'aframe';
 import 'aframe-animation-component'
-import { Entity, Scene } from 'aframe-react';
+import { Entity } from 'aframe-react';
 
 
 

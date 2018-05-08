@@ -1,33 +1,56 @@
 import React, { Component } from 'react';
-
 import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import ReactDOM from 'react-dom';
 
-import Canvas from './Canvas'
-import Button from './Button'
-import Cursor from './Cursor'
-import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
 
+import Cursor from './Cursor'
+import Room from './Room'
+import HomePage from './HomePage';
 
 class App extends Component {
   state = {
+    isOnHomePage: true,
+    renderPreview: false,
     message: "Passive",
+    panoBackgrounds: [
+      {
+        url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525442332/MilleniumFalcon8K.jpg',
+        name: 'Millenium Falcon'
+      },
+      {
+        url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351275/Heron_smaller.jpg',
+        name: 'Underwater'
+      },
+      {
+        url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351271/johnstone-hanson-island-forest-360.jpg',
+        name: 'Forest'
+      },
+      {
+        url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351274/Helvellyn_Striding_Edge_360_Panorama__Lake_District_-_June_09.jpg',
+        name: 'Mountain'
+      },
+      {
+        url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351271/Venice.Still001.jpg',
+        name: 'Venice'
+      },
+    ],
+    chosenBackgroundImage: ''
   };
 
-  componentWillReceiveProps() {
-
-  }
   render() {
     return (
       <Scene events={{
         mousemove: this.moveMouse
       }}>
+
+        {this.renderWire()}
+
+
         <Entity primitive='a-camera'
           position='0 0 0.5' >
           <Entity
             primitive='a-cursor'
-
             position='0 0 -0.5'
             geometry={{
               primitive: 'ring',
@@ -37,22 +60,38 @@ class App extends Component {
             material={{ color: 'white', shader: 'flat' }}
           />
         </Entity>
-        <Canvas />
-        <Button
-          bot={BOT}
-          accessId={ACCESS_ID}
-          secretKey={SECRET_KEY}
-          changeMessageTo={this.changeMessageTo} />
-        <Entity primitive='a-sky' rotation='0 33 0'
-          src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525442332/MilleniumFalcon8K.jpg' />
+
+        {this.chooseRoom()}
+
       </Scene >
     );
   }
+  setPanoImage = (image) => {
+
+    this.setState({ chosenBackgroundImage: image })
+    this.setState({ renderPreview: true })
+  }
+
+  renderWire = () => {
+    if (!this.state.renderPreview) {
+      return <Entity primitive='a-sky' rotation='0 33 0'
+        wireframe={true} color='green' />
+    } else return <Entity primitive='a-sky' rotation='0 33 0'
+      src={this.state.chosenBackgroundImage} />
+  }
+
+
   changeMessageTo = message => {
     this.setState({ message });
   };
-}
+  chooseRoom = () => {
+    if (this.state.isOnHomePage) {
+      return <HomePage panoBackgrounds={this.state.panoBackgrounds}
+        setPanoImage={this.setPanoImage} />
+    } else return <Room />
+  }
 
+}
 
 export default App;
 
