@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import blueLex from './lex.png'
-import greenLex from './lex-green.png';
 
 import 'aframe';
 import { Entity, Scene } from 'aframe-react';
@@ -18,6 +16,7 @@ import { setPusherClient } from 'react-pusher'
 import Pusher from 'pusher-js'
 import { pusherConfig } from './config/pusherConfig'
 import BackgroundAudio from './BackgroundAudio';
+import LexIcon from './LexIcon'
 
 class App extends Component {
   state = {
@@ -90,15 +89,8 @@ class App extends Component {
             }}
             material={{ color: 'white', shader: 'flat' }}
           />
-          <Entity
-            primitive='a-plane'
-            material={{ transparent: true }}
-            height='0.15'
-            width='0.15'
-            src={this.changeIconColour(this.state.message)}
-            position='0 0.75 -1'
-          />
-        </Entity>
+          <LexIcon message={this.state.message} />
+        </Entity >
         <Lex
           bot={BOT}
           accessId={ACCESS_ID}
@@ -113,9 +105,7 @@ class App extends Component {
       </Scene >
     );
   }
-  changeIconColour = (message) => {
-    return message === 'Passive' ? blueLex : greenLex;
-  }
+
   setPanoImage = (image) => {
 
     this.setState({ chosenBackgroundImage: image })
