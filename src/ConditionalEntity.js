@@ -25,4 +25,4 @@ function withCondition(WrappedComponent, conditions) {
 }
 
 
-export default withCondition(Entity, ['isButtonVisible', 'likedVisible', 'imageXpos', 'imageYpos', 'confirmLike', 'confirmDelete', 'confirmMove', 'isMoving'])
+export default withCondition(Entity, ['isButtonVisible', 'likedVisible', 'imageXpos', 'imageYpos', 'confirmLike', 'confirmDelete', 'confirmMove', 'isMoving', 'src'])

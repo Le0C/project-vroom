@@ -11,14 +11,19 @@ class SearchBar extends Component {
   state = {
     searchImages: []
   }
-  render() {
 
+  componentWillReceiveProps(newProps) {
+
+    this.setState({ searchImages: newProps.images })
+  }
+
+  render() {
     const positions = [-1.16, -0.58, 0, 0.58, 1.16]
-    if (this.props.images.length === 0) {
+    if (this.state.searchImages.length === 0) {
       return null;
     } else return (
       <Entity>
-        {this.props.images.map((image, i) => {
+        {this.state.searchImages.map((image, i) => {
           if (i >= 5) return
           return <Entity>
             <ConditionalEntity
@@ -41,7 +46,7 @@ class SearchBar extends Component {
                 position='0 -0.25 0.01'
                 events={{
                   mouseenter: () => {
-                    this.props.addImage(this.props.images[i].M.url.S)
+                    this.props.addImage(this.state.searchImages[i].M.url.S)
                   }
                 }}
               />
