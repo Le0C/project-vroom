@@ -19,7 +19,7 @@ class Lex extends Component {
     if (annyang) {
       // Let's define a command.
       var commands = {
-        "wakey wakey v": function() {
+        "hello": function () {
           handleAudioControlClick();
         }
       };
@@ -48,7 +48,7 @@ class Lex extends Component {
 
     this.conversation = new LexAudio.conversation(
       config,
-      function(state) {
+      function (state) {
         changeMessageTo(state + "...");
         if (state === "Listening") {
           console.log("listening");
@@ -57,7 +57,7 @@ class Lex extends Component {
           console.log("sending");
         }
       },
-      function(data) {
+      function (data) {
         console.log(
           "Transcript: ",
           data.inputTranscript,
@@ -65,7 +65,7 @@ class Lex extends Component {
           data.message
         );
       },
-      function(error) {
+      function (error) {
         changeMessageTo(error);
       }
     );

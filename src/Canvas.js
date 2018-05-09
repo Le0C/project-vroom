@@ -84,11 +84,11 @@ class Canvas extends Component {
     )
   }
   renderSearchBar = () => {
-    if (this.props.images.length === 0) {
+    if (this.props.queries.length === 0) {
       return null;
     } else {
       return <SearchBar
-        images={this.props.images}
+        queries={this.props.queries}
         addImage={this.addImage}
       />
     }

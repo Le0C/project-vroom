@@ -9,17 +9,23 @@ import ConditionalEntity from './ConditionalEntity'
 class SearchBar extends Component {
 
   state = {
-    searchImages: []
+    searchImages: [],
+    searchVideos: []
   }
 
   componentWillReceiveProps(newProps) {
 
-    this.setState({ searchImages: newProps.images })
+    if (newProps.queries[0].M.url.S.includes('.com/get/')) {
+      this.setState({ searchImages: newProps.queries })
+    } else this.setState({ searchVideos: newProps.queries })
+
+
+
   }
 
   render() {
     const positions = [-1.16, -0.58, 0, 0.58, 1.16]
-    if (this.state.searchImages.length === 0) {
+    if (this.state.searchImages.length === 0 && this.state.searchVideos.length === 0) {
       return null;
     } else return (
       <Entity>
@@ -38,7 +44,6 @@ class SearchBar extends Component {
             >
 
               <Entity
-
                 primitive='a-cylinder'
                 src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525447402/image_1.png'
                 radius='0.09' height='0.03'
@@ -51,10 +56,25 @@ class SearchBar extends Component {
                 }}
               />
             </ConditionalEntity>
+
+            <Entity
+              primitive='a-cylinder'
+              color='red'
+              radius='0.09' height='0.03'
+              rotation='180 -90 90'
+              position='0 0 -1'
+              events={{
+                mouseenter: this.handleClearStorage
+              }}
+            > </Entity>
           </Entity>
         })}
       </Entity>
     )
+  }
+  handleClearStorage = () => {
+    //invokes clear storage
+
   }
 }
 

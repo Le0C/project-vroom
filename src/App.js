@@ -118,6 +118,8 @@ class App extends Component {
     );
   }
 
+  clearQueryStorage = () => { }
+
   setPanoImage = (image) => {
 
     this.setState({ chosenBackgroundImage: image })
@@ -144,7 +146,7 @@ class App extends Component {
         setPanoImage={this.setPanoImage}
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
-    } else return <Canvas images={this.state.queryResults} />
+    } else return <Canvas queries={this.state.queryResults} />
 
   }
 
