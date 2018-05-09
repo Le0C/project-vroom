@@ -29,6 +29,7 @@ class HomeSphere extends Component {
           src={this.props.image.preview}
           position='0 0 0'
           radius='0.2'
+          animation='property: rotation; to: 0 360 0; dur: 7000; loop: true; easing: linear'
         />
         <Entity
           visible={this.state.previewButtonVisible}

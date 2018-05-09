@@ -90,6 +90,7 @@ class Canvas extends Component {
     )
   }
   renderSearchBar = () => {
+    console.log(this.props.queries)
     if (this.props.queries.length === 0) {
       return null;
     } else {

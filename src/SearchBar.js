@@ -24,26 +24,46 @@ class SearchBar extends Component {
   render() {
 
     if (this.state.searchImages.length === 0 && this.state.searchVideos.length === 0) {
+      console.log('into null block')
       return null;
-    } else if (this.state.searchImages.length > 0 && this.state.searchVideos.length === 0) return (
-      <Entity>
-        {this.state.searchImages.map((image, i) => {
-          if (!image.rendered) return this.renderSearches(i, image)
+    }
+    if (this.state.searchImages.length > 0 && this.state.searchVideos.length === 0) {
+      console.log('into imgae render block')
+      return (
+        <Entity>
+          {this.state.searchImages.map((item, i) => {
+            if (!item.rendered) return this.renderSearches(i, item, 'a-box')
+          })}
+        </Entity>
+      )
+    }
+    if (this.state.searchVideos.length > 0) {
+      console.log('into correct if block')
+      return (<Entity>
+        {this.state.searchVideos.map((item, i) => {
+          console.log(item)
+          return this.renderSearches(i, item, 'a-video')
         })}
-      </Entity>
-    )
+
+      </Entity>)
+    } else {
+      console.log('last bloc')
+      return null
+    }
   }
-  renderSearches = (i, image) => {
+
+  renderSearches = (i, item, type) => {
+    console.log(this.state)
     const positions = [-1.16, -0.58, 0, 0.58, 1.16]
     return <Entity>
       <ConditionalEntity
-        primitive='a-box'
+        primitive={`${type}`}
         position={`${positions[i]} -0.5 0`}
         width='0.4'
         height='0.4'
         depth={0.025}
         rotation='-45 0 0'
-        src={image.M.url.S}
+        src={item.M.url.S}
       >
         <Entity
           primitive='a-cylinder'
@@ -63,10 +83,10 @@ class SearchBar extends Component {
       </ConditionalEntity>
       <Entity
         primitive='a-cylinder'
-        color='red'
         radius='0.09' height='0.03'
-        rotation='180 -90 90'
-        position='0 0 -1'
+        rotation='315 -90 90'
+        src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525447402/image_1.png'
+        position='-0.2 -0.4 -1'
         events={{
           mouseenter: this.handleClearStorage
         }}
@@ -76,7 +96,7 @@ class SearchBar extends Component {
         rotation='180 -90 90'
         primitive='a-cylinder'
         position='0.2 -0.4 -1'
-        color='green'
+        src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525447402/image_1.png'
         events={{
           mouseenter: () => { this.scollImages() }
         }} />
