@@ -36,7 +36,7 @@ class HomePage extends Component {
 
       {this.props.panoBackgrounds.map((image, i) => {
         return <Entity>
-          <HomeSphere url={image.url} index={i} setPanoImage={this.props.setPanoImage} />
+          <HomeSphere image={image} index={i} setPanoImage={this.props.setPanoImage} />
         </Entity>
       })}
 

@@ -117,7 +117,7 @@ class App extends Component {
       return <Entity primitive='a-sky' rotation='0 33 0'
         wireframe={true} color='green' />
     } else return <Entity primitive='a-sky' rotation='0 33 0'
-      src={this.state.chosenBackgroundImage} />
+      src={this.state.chosenBackgroundImage.url} />
   }
 
   roomConfirmed = () => {

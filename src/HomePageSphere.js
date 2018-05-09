@@ -40,7 +40,7 @@ class HomeSphere extends Component {
           position={`0 0.35 0.2`}
           events={{
             mouseenter: () => {
-              this.props.setPanoImage(this.props.url)
+              this.props.setPanoImage(this.props.image)
             }
           }}
         />
