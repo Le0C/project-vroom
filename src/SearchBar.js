@@ -11,7 +11,7 @@ class SearchBar extends Component {
   state = {
     searchImages: [],
     searchVideos: [],
-    page: 1
+    counter: 1
   }
 
   componentWillReceiveProps(newProps) {
@@ -28,62 +28,8 @@ class SearchBar extends Component {
     } else if (this.state.searchImages.length > 0 && this.state.searchVideos.length === 0) return (
       <Entity>
         {this.state.searchImages.map((image, i) => {
-          if (this.state.page === 1) {
-            if (i >= 5)
-              return
-          } else if (this.state.page === 2) {
-            i = 5
-          }
-          return this.renderSearches(i, image)
-          // return <Entity>
-          //   <ConditionalEntity
-
-          //     primitive='a-box'
-          //     position={`${positions[i]} -0.5 0`}
-          //     width='0.4'
-          //     height='0.4'
-          //     depth={0.025}
-          //     rotation='-45 0 0'
-          //     src={image.M.url.S}
-          //   >
-
-          //     <Entity
-          //       primitive='a-cylinder'
-          //       src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525447402/image_1.png'
-          //       radius='0.09' height='0.03'
-          //       rotation='180 -90 90'
-          //       position='0 -0.25 0.01'
-          //       events={{
-          //         mouseenter: () => {
-          //           this.props.addImage(this.state.searchImages[i].M.url.S)
-          //         }
-          //       }}
-          //     />
-          //   </ConditionalEntity>
-
-
-          // </Entity>
+          if (!image.rendered) return this.renderSearches(i, image)
         })}
-
-        {/* <Entity
-          primitive='a-cylinder'
-          color='red'
-          radius='0.09' height='0.03'
-          rotation='180 -90 90'
-          position='0 0 -1'
-          events={{
-            mouseenter: this.handleClearStorage
-          }}
-        />
-        <Entity
-          radius='0.09' height='0.03'
-          rotation='180 -90 90'
-          primitive='a-cylinder'
-          position='0.2 -0.3 -1'
-          color='green'
-          events={{
-            mouseenter: this.scollImages
-          }} /> */}
       </Entity>
     )
   }
@@ -107,7 +53,10 @@ class SearchBar extends Component {
           position='0 -0.25 0.01'
           events={{
             mouseenter: () => {
+              let ImageArray = this.state.searchImages
+              ImageArray[i].rendered = true
               this.props.addImage(this.state.searchImages[i].M.url.S)
+              this.setState({ searchImages: ImageArray })
             }
           }}
         />
@@ -126,18 +75,23 @@ class SearchBar extends Component {
         radius='0.09' height='0.03'
         rotation='180 -90 90'
         primitive='a-cylinder'
-        position='0.2 -0.3 -1'
+        position='0.2 -0.4 -1'
         color='green'
         events={{
-          mouseenter: this.scollImages
+          mouseenter: () => { this.scollImages() }
         }} />
     </Entity>
   }
 
-  scollImages = () => {
+  scollImages = (i) => {
+    let ImageArray = this.state.searchImages
 
+    let newImages = ImageArray.filter((image) => {
+      if (!image.rendered) return image
 
-    this.setState({ page: this.state.page + 1 })
+    })
+
+    this.setState({ searchImages: newImages })
   }
 
 
