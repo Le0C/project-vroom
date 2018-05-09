@@ -35,33 +35,33 @@ class App extends Component {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525442332/MilleniumFalcon8K.jpg',
         name: 'Millenium Falcon',
         audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525792087/Star_Wars_A_New_Hope_Soundtrack_-_11._Cantina_Band.mp3',
-        preview: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525854039/falcon_preview.jpg'
+        preview: 'http://res.cloudinary.com/dnuwifia4/image/upload/c_scale,q_37,w_677/v1525854039/falcon_preview.jpg'
 
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351275/Heron_smaller.jpg',
         name: 'Underwater',
         audio: "https://res.cloudinary.com/dnuwifia4/video/upload/v1525786202/07074003.wav",
-        preview: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525854039/underwater_preview.jpg'
+        preview: 'http://res.cloudinary.com/dnuwifia4/image/upload/c_scale,q_40,w_566/v1525854039/underwater_preview.jpg'
 
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351271/johnstone-hanson-island-forest-360.jpg',
         name: 'Forest',
         audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525791588/07070192.wav',
-        preview: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525854039/forest_preview.jpg'
+        preview: 'http://res.cloudinary.com/dnuwifia4/image/upload/c_scale,q_31,w_609/v1525854039/forest_preview.jpg'
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351274/Helvellyn_Striding_Edge_360_Panorama__Lake_District_-_June_09.jpg',
         name: 'Mountain',
         audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525792774/wind_edited.mp3',
-        preview: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525854039/mountain_preview.jpg'
+        preview: 'http://res.cloudinary.com/dnuwifia4/image/upload/c_scale,q_45,w_595/v1525854039/mountain_preview.jpg'
 
       },
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525351271/Venice.Still001.jpg',
         name: 'Venice',
-        preview: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525854039/venice_preview.jpg',
+        preview: 'http://res.cloudinary.com/dnuwifia4/image/upload/c_scale,q_36,w_442/v1525854039/venice_preview.jpg',
         audio: 'https://res.cloudinary.com/dnuwifia4/video/upload/v1525797173/O_Sole_Mio_-_Gondola_in_Venice_on_the_Grand_Canal.mp3'
       },
     ],

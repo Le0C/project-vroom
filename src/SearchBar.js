@@ -57,7 +57,7 @@ class SearchBar extends Component {
               />
             </ConditionalEntity>
 
-            <Entity
+            {/* <Entity
               primitive='a-cylinder'
               color='red'
               radius='0.09' height='0.03'
@@ -66,7 +66,7 @@ class SearchBar extends Component {
               events={{
                 mouseenter: this.handleClearStorage
               }}
-            > </Entity>
+            > </Entity> */}
           </Entity>
         })}
       </Entity>

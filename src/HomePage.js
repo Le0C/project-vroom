@@ -13,25 +13,11 @@ class HomePage extends Component {
         position='0.3 0.4 -0.1'
         opacity='0'
         height='0.1'
-        width='0.5'>
-        <Entity
-          text={{
-            value: 'Welcome to vRoom.',
-            color: 'black',
-            anchor: 'center',
-          }} />
-      </Entity>
-      <Entity primitive='a-plane'
-        position='0.3 0.33 -0.1'
-        opacity='0'
-        height='0.1'
-        width='0.5'>
-        <Entity
-          text={{
-            value: 'Please select a theme.',
-            color: 'black',
-            anchor: 'center',
-          }} />
+        width='0.5'
+        color='yellow'
+        src=''
+      >
+
       </Entity>
 
       {this.props.panoBackgrounds.map((image, i) => {
