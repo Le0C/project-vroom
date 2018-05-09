@@ -132,7 +132,7 @@ class App extends Component {
         setPanoImage={this.setPanoImage}
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
-    } else return <Canvas />
+    } else return <Canvas images={this.state.queryResults} />
 
   }
 
