@@ -1,3 +1,5 @@
+
+
 import React, { Component } from 'react';
 import 'aframe';
 import { Entity, Scene } from 'aframe-react';
@@ -11,23 +13,29 @@ import Pusher from 'pusher-js'
 import BackgroundAudio from './BackgroundAudio';
 import LexIcon from './LexIcon'
 
-import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
-import { pusherConfig } from './config/pusherConfig'
+// import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
+// import { pusherConfig } from './config/pusherConfig'
+// let { app_id, key, secret, cluster, channel_name } = pusherConfig
 
-let { app_id, key, secret, cluster, channel_name } = pusherConfig
+// require('dotenv').config()
 
-if (!BOT && !ACCESS_ID && !SECRET_KEY) {
-  let BOT = process.env.BOT
-  let ACCESS_ID = process.env.ACCESS_ID
-  let SECRET_KEY = process.env.SECRET_KEY
-}
-if (!app_id && !key && !secret && !cluster && !channel_name) {
-  let app_id = process.env.app_id
-  let key = process.env.key
-  let secret = process.env.secret
-  let cluster = process.env.cluster
-  let channel_name = process.env.channel_name
-}
+// import dotenv from 'dotenv'
+
+// import { } from 'dotenv/config'
+
+// if (!BOT && !ACCESS_ID && !SECRET_KEY) {
+let BOT = process.env.REACT_APP_BOT
+console.log(process.env)
+let ACCESS_ID = process.env.REACT_APP_ACCESS_ID
+let SECRET_KEY = process.env.REACT_APP_SECRET_KEY
+// }
+// if (!app_id && !key && !secret && !cluster && !channel_name) {
+let app_id = process.env.REACT_APP_app_id
+let key = process.env.REACT_APP_key
+let secret = process.env.REACT_APP_secret
+let cluster = process.env.REACT_APP_cluster
+let channel_name = process.env.REACT_APP_channel_name
+// }
 
 
 class App extends Component {
