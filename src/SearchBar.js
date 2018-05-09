@@ -9,19 +9,7 @@ import ConditionalEntity from './ConditionalEntity'
 class SearchBar extends Component {
 
   state = {
-    searchImages: [{
-      url: 'https://pixabay.com/get/ea36b7062ff0063ed1584d05fb1d4e9ee172e0d119ac104497f5c671a3ebb1b0_1280.png',
-    },
-    {
-      url: 'https://pixabay.com/get/eb35b00a28fd093ed1584d05fb1d4e9ee172e0d119ac104497f5c671a3ebb1b0_1280.jpg',
-    },
-    {
-      url: 'https://pixabay.com/get/ea36b30d2af7013ed1584d05fb1d4e9ee172e0d119ac104497f5c671a3ebb1b0_1280.jpg',
-    }, {
-      url: 'https://pixabay.com/get/ea36b6062dfd023ed1584d05fb1d4e9ee172e0d119ac104497f5c671a3ebb1b0_1280.jpg',
-    }, {
-      url: 'https://pixabay.com/get/ea36b00a2df6073ed1584d05fb1d4e9ee172e0d119ac104497f5c671a3ebb1b0_1280.jpg',
-    }]
+    searchImages: []
   }
   render() {
 
