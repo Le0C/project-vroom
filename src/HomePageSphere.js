@@ -26,7 +26,7 @@ class HomeSphere extends Component {
       >
         <Entity
           primitive='a-sphere'
-          // src={this.props.url}
+          src={this.props.image.preview}
           position='0 0 0'
           radius='0.2'
         />
