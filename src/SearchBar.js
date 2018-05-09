@@ -41,7 +41,7 @@ class SearchBar extends Component {
       console.log('into correct if block')
       return (<Entity>
         {this.state.searchVideos.map((item, i) => {
-          console.log(item)
+
           return this.renderSearches(i, item, 'a-video')
         })}
 
@@ -61,6 +61,7 @@ class SearchBar extends Component {
         position={`${positions[i]} -0.5 0`}
         width='0.4'
         height='0.4'
+        autoplay='false'
         depth={0.025}
         rotation='-45 0 0'
         src={item.M.url.S}
