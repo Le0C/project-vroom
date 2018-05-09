@@ -6,14 +6,20 @@ import ButtonHolder from './ButtonHolder';
 import SearchBar from './SearchBar'
 
 import ConditionalEntity from './ConditionalEntity'
+import DeleteAudio from './DeleteAudio';
+import FavouriteAudio from './FavouriteAudio';
 
 class Canvas extends Component {
   state = {
-    currentImages: []
+    currentImages: [],
+    renderDeleteAudio: false,
+    renderFavouriteAudio: false
   }
   render() {
     return (
       <Entity>
+        {this.state.renderDeleteAudio && <DeleteAudio playsound={this.state.renderDeleteAudio} audioOff={this.audioOff} />}
+        {this.state.renderFavouriteAudio && <FavouriteAudio playsound={this.state.renderFavouriteAudio} audioOff={this.audioOff} />}
         <Entity>
           {this.state.currentImages.map((image, i) => {
             return <Entity >
@@ -158,7 +164,7 @@ class Canvas extends Component {
     let ImgArray = this.state.currentImages.filter((image) => {
       if (image.uuid !== this.state.currentImages[id].uuid) return image
     })
-    this.setState({ currentImages: ImgArray })
+    this.setState({ currentImages: ImgArray, renderDeleteAudio: true })
   }
   handleLike = (e) => {
     let id = parseInt(e.target.id.slice(3))
@@ -169,7 +175,7 @@ class Canvas extends Component {
         return image
       } return image
     })
-    this.setState({ currentImages: ImgArray })
+    this.setState({ currentImages: ImgArray, renderFavouriteAudio: true })
   }
 
   handleMoveLeft = (e) => {
@@ -260,6 +266,9 @@ class Canvas extends Component {
       uuid: uuid()
     }
     this.setState({ currentImages: [...this.state.currentImages, imgObj] })
+  }
+  audioOff = () => {
+    this.setState({ renderDeleteAudio: false, renderFavouriteAudio: false })
   }
 }
 export default Canvas;

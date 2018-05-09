@@ -3,19 +3,18 @@ import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import Sound from 'react-sound';
 
-class BackgroundAudio extends Component {
+class DeleteAudio extends Component {
   render() {
-    const audioSource = this.props.audioSource.audio;
     return (
             <Sound
-                url={audioSource}
+                url="http://res.cloudinary.com/dnuwifia4/video/upload/v1525796279/62139__tkshredder__zoomin.wav"
                 playStatus={Sound.status.PLAYING}
                 autoLoad="true"
-                loop="true"
-                volume="15"
+                volume="50"
+                onFinishedPlaying={this.props.audioOff}
                 />
     )
   }
 }
 
-export default BackgroundAudio;
+export default DeleteAudio;
