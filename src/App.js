@@ -118,7 +118,10 @@ class App extends Component {
     );
   }
 
-  clearQueryStorage = () => { }
+  clearQueryStorage = () => {
+
+    this.setState({ queryResults: [] })
+  }
 
   setPanoImage = (image) => {
 
@@ -146,7 +149,9 @@ class App extends Component {
         setPanoImage={this.setPanoImage}
         renderPreview={this.state.renderPreview}
         roomConfirmed={this.roomConfirmed} />
-    } else return <Canvas queries={this.state.queryResults} />
+    } else return <Canvas
+      clearQueries={this.clearQueryStorage}
+      queries={this.state.queryResults} />
 
   }
 

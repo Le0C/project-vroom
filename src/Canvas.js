@@ -94,6 +94,7 @@ class Canvas extends Component {
       return null;
     } else {
       return <SearchBar
+        clearQueries={this.props.clearQueries}
         queries={this.props.queries}
         addImage={this.addImage}
       />

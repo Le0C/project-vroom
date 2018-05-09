@@ -10,16 +10,12 @@ class HomePage extends Component {
   render() {
     return (<Entity>
       <Entity primitive='a-plane'
-        position='0.3 0.4 -0.1'
-        opacity='0'
-        height='0.1'
-        width='0.5'
-        color='yellow'
-        src=''
-      >
-
-      </Entity>
-
+        position='0 0.76 -0.9'
+        transparent='true'
+        height='1'
+        width='2'
+        src='http://res.cloudinary.com/dnuwifia4/image/upload/v1525873823/VROOM-1.png'
+      />
       {this.props.panoBackgrounds.map((image, i) => {
         return <Entity>
           <HomeSphere image={image} index={i} setPanoImage={this.props.setPanoImage} />
