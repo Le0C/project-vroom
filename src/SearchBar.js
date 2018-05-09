@@ -24,6 +24,7 @@ class SearchBar extends Component {
     }]
   }
   render() {
+
     const positions = [-1.16, -0.58, 0, 0.58, 1.16]
     if (this.props.images.length === 0) {
       return null;

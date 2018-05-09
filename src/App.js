@@ -1,22 +1,34 @@
 import React, { Component } from 'react';
-
 import 'aframe';
 import { Entity, Scene } from 'aframe-react';
 import ReactDOM from 'react-dom';
-
-
 import HomePage from './HomePage';
-
-
 import Canvas from './Canvas'
 import Lex from './Lex'
 import Cursor from './Cursor'
-import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
 import { setPusherClient } from 'react-pusher'
 import Pusher from 'pusher-js'
-import { pusherConfig } from './config/pusherConfig'
 import BackgroundAudio from './BackgroundAudio';
 import LexIcon from './LexIcon'
+
+import { BOT, ACCESS_ID, SECRET_KEY } from './config/bot'
+import { pusherConfig } from './config/pusherConfig'
+
+let { app_id, key, secret, cluster, channel_name } = pusherConfig
+
+if (!BOT && !ACCESS_ID && !SECRET_KEY) {
+  let BOT = process.env.BOT
+  let ACCESS_ID = process.env.ACCESS_ID
+  let SECRET_KEY = process.env.SECRET_KEY
+}
+if (!app_id && !key && !secret && !cluster && !channel_name) {
+  let app_id = process.env.app_id
+  let key = process.env.key
+  let secret = process.env.secret
+  let cluster = process.env.cluster
+  let channel_name = process.env.channel_name
+}
+
 
 class App extends Component {
   state = {
@@ -66,8 +78,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const pusherClient = new Pusher(pusherConfig.key, { cluster: pusherConfig.cluster, encrypted: true })
-    const channel = pusherClient.subscribe(pusherConfig.channel_name)
+    const pusherClient = new Pusher(key, { cluster: cluster, encrypted: true })
+    const channel = pusherClient.subscribe(channel_name)
     channel.bind('my-event', data => {
       let queryResults = Object.entries(data)[0][1][0].dynamodb.NewImage.message.L
       this.setState({ queryResults })
@@ -83,6 +95,7 @@ class App extends Component {
 
 
         <BackgroundAudio audioSource={this.state.chosenBackgroundImage} />
+
         {this.renderWire()}
 
         <Entity primitive='a-camera'
@@ -107,9 +120,6 @@ class App extends Component {
           changeMessageTo={this.changeMessageTo} />
         {this.chooseRoom()}
 
-        {/* { return null? SearchBar : <SearchBar
-          images={this.state.queryResults}
-        />} */}
       </Scene >
     );
   }
