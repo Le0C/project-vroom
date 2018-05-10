@@ -33,7 +33,7 @@ class HomeSphere extends Component {
         <Entity
           visible={this.state.previewButtonVisible}
           primitive='a-cylinder'
-          radius='0.09'
+          radius='0.06'
           height='0.02'
           rotation='180 -90 90'
           src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525776321/question.png'

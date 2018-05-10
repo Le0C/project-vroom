@@ -138,7 +138,6 @@ class Canvas extends Component {
     confirmToggle.confirmDelete = false;
     confirmToggle.confirmMove = false;
     confirmToggle.isMoving = false;
-
     let ImgArray = this.state.currentImages
     ImgArray.map((image) => {
       return image.confirmLike = false

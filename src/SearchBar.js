@@ -50,7 +50,7 @@ class SearchBar extends Component {
 
   renderSearches = (i, item, type) => {
     console.log(this.state)
-    const positions = [-1.16, -0.58, 0, 0.58, 1.16]
+    const positions = [-1.12, -0.56, 0, 0.56, 1.12]
     return <Entity>
       <ConditionalEntity
         primitive={`${type}`}
@@ -69,12 +69,7 @@ class SearchBar extends Component {
           rotation='180 -90 90'
           position='0 -0.25 0.01'
           events={{
-            mouseenter: () => {
-              let ImageArray = this.state.searchImages
-              ImageArray[i].rendered = true
-              this.props.addImage(this.state.searchImages[i].M.url.S)
-              this.setState({ searchImages: ImageArray })
-            }
+            mouseenter: () => { this.confirmRender(i) }
           }}
         />
       </ConditionalEntity>
@@ -99,15 +94,18 @@ class SearchBar extends Component {
         }} />
     </Entity>
   }
+  confirmRender = (i) => {
+    let ImageArray = this.state.searchImages
+    ImageArray[i].rendered = true
+    this.props.addImage(this.state.searchImages[i].M.url.S)
+    this.setState({ searchImages: ImageArray })
+  }
 
   scollImages = (i) => {
     let ImageArray = this.state.searchImages
-
     let newImages = ImageArray.filter((image) => {
       if (!image.rendered) return image
-
     })
-
     this.setState({ searchImages: newImages })
   }
 
