@@ -73,9 +73,13 @@ class App extends Component {
     const pusherClient = new Pusher(key, { cluster: cluster, encrypted: true })
     const channel = pusherClient.subscribe(channel_name)
     channel.bind('my-event', data => {
+      // if (Object.entries(data)[0][1][0].dynamodb.NewImage.message.L.length > 1) {
       let queryResults = Object.entries(data)[0][1][0].dynamodb.NewImage.message.L
       this.setState({ queryResults })
       console.log(this.state.queryResults)
+      // } else {
+
+      // }
     })
   }
 
