@@ -10,6 +10,7 @@ import { setPusherClient } from 'react-pusher'
 import Pusher from 'pusher-js'
 import BackgroundAudio from './BackgroundAudio';
 import LexIcon from './LexIcon'
+import PlaySong from './PlaySong';
 
 let BOT = process.env.REACT_APP_BOT
 
@@ -90,7 +91,8 @@ class App extends Component {
       }}>
 
 
-        <BackgroundAudio audioSource={this.state.chosenBackgroundImage} />
+        {!this.state.queryResults.length && <BackgroundAudio audioSource={this.state.chosenBackgroundImage} />}
+        {this.state.queryResults.length && <PlaySong queryResults={this.state.queryResults} removeSong={this.removeSong}/>}
 
         {this.renderWire()}
 
@@ -156,7 +158,9 @@ class App extends Component {
       queries={this.state.queryResults} />
 
   }
-
+  removeSong = () => {
+    this.setState({queryResults: []})
+  }
 }
 
 export default App;
