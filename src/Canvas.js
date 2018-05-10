@@ -8,18 +8,24 @@ import SearchBar from './SearchBar'
 import ConditionalEntity from './ConditionalEntity'
 import DeleteAudio from './DeleteAudio';
 import FavouriteAudio from './FavouriteAudio';
+import AddImgAudio from './AddImgAudio';
+import MoveImgAudio from './MoveImgAudio';
 
 class Canvas extends Component {
   state = {
     currentImages: [],
     renderDeleteAudio: false,
-    renderFavouriteAudio: false
+    renderFavouriteAudio: false,
+    renderAddImgAudio: false,
+    renderMoveImgAudio: false
   }
   render() {
     return (
       <Entity>
         {this.state.renderDeleteAudio && <DeleteAudio playsound={this.state.renderDeleteAudio} audioOff={this.audioOff} />}
         {this.state.renderFavouriteAudio && <FavouriteAudio playsound={this.state.renderFavouriteAudio} audioOff={this.audioOff} />}
+        {this.state.renderAddImgAudio && <AddImgAudio playsound={this.state.renderAddImgAudio} audioOff={this.audioOff} />}
+        {this.state.renderMoveImgAudio && <MoveImgAudio playsound={this.state.renderMoveImgAudio} audioOff={this.audioOff} />}
         <Entity>
           {this.state.currentImages.map((image, i) => {
             return <Entity >
@@ -187,7 +193,7 @@ class Canvas extends Component {
     ImgToMove.xpos = Number((ImgToMove.xpos - 0.4).toFixed(2))
     ImgToMove.xrot = ImgToMove.xpos * -12
     ImgArray[id] = ImgToMove
-    setTimeout(() => { this.setState({ currentImages: ImgArray }) }, 550)
+    setTimeout(() => { this.setState({ currentImages: ImgArray, renderMoveImgAudio: true }) }, 550)
   }
   handleMoveRight = (e) => {
     let id = parseInt(e.target.id.slice(3))
@@ -197,8 +203,7 @@ class Canvas extends Component {
     ImgToMove.xpos = Number((ImgToMove.xpos + 0.4).toFixed(2))
     ImgToMove.xrot = ImgToMove.xpos * -12
     ImgArray[id] = ImgToMove
-    setTimeout(() => { this.setState({ currentImages: ImgArray }) }, 550)
-
+    setTimeout(() => { this.setState({ currentImages: ImgArray, renderMoveImgAudio: true }) }, 550)
   }
 
   handleMoveUp = (e) => {
@@ -207,7 +212,7 @@ class Canvas extends Component {
     let ImgToMove = Object.assign({}, this.state.currentImages[id])
     ImgToMove.ypos = Number((ImgToMove.ypos + 0.4).toFixed(2))
     ImgArray[id] = ImgToMove
-    this.setState({ currentImages: ImgArray })
+    this.setState({ currentImages: ImgArray, renderMoveImgAudio: true })
   }
   handleMoveDown = (e) => {
     let id = parseInt(e.target.id.slice(3))
@@ -215,7 +220,7 @@ class Canvas extends Component {
     let ImgToMove = Object.assign({}, this.state.currentImages[id])
     ImgToMove.ypos = Number((ImgToMove.ypos - 0.4).toFixed(2))
     ImgArray[id] = ImgToMove
-    this.setState({ currentImages: ImgArray })
+    this.setState({ currentImages: ImgArray, renderMoveImgAudio: true })
   }
 
   handleHover = (e) => {
@@ -266,10 +271,10 @@ class Canvas extends Component {
       isMoving: false,
       uuid: uuid()
     }
-    this.setState({ currentImages: [...this.state.currentImages, imgObj] })
+    this.setState({ currentImages: [...this.state.currentImages, imgObj], renderAddImgAudio: true })
   }
   audioOff = () => {
-    this.setState({ renderDeleteAudio: false, renderFavouriteAudio: false })
+    this.setState({ renderDeleteAudio: false, renderFavouriteAudio: false, renderAddImgAudio: false, renderMoveImgAudio: false })
   }
 }
 export default Canvas;
