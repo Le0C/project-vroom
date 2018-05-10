@@ -5,9 +5,9 @@ import ReactPlayer from 'react-player'
 
 class PlaySong extends Component {
   render() {
-    const song = this.props.queryResults[0].M.link.S;
+    const song = this.props.audioResult[0].M.link.S;
     return (
-        <ReactPlayer url={song} playing width="0px" height="0px" onEnded={this.props.removeSong}/>
+      <ReactPlayer url={song} playing width="0px" height="0px" onEnded={this.props.removeSong} />
     )
   }
 }

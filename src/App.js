@@ -29,6 +29,7 @@ class App extends Component {
     renderPreview: false,
     message: "Passive",
     queryResults: [],
+    audioResult: [],
     panoBackgrounds: [
       {
         url: 'https://res.cloudinary.com/dnuwifia4/image/upload/v1525442332/MilleniumFalcon8K.jpg',
@@ -74,13 +75,14 @@ class App extends Component {
     const pusherClient = new Pusher(key, { cluster: cluster, encrypted: true })
     const channel = pusherClient.subscribe(channel_name)
     channel.bind('my-event', data => {
-      // if (Object.entries(data)[0][1][0].dynamodb.NewImage.message.L.length > 1) {
-      let queryResults = Object.entries(data)[0][1][0].dynamodb.NewImage.message.L
-      this.setState({ queryResults })
-      console.log(this.state.queryResults)
-      // } else {
-
-      // }
+      if (Object.entries(data)[0][1][0].dynamodb.NewImage.message.L.length > 1) {
+        let queryResults = Object.entries(data)[0][1][0].dynamodb.NewImage.message.L
+        this.setState({ queryResults })
+        console.log(this.state.queryResults)
+      } else {
+        let audioResult = Object.entries(data)[0][1][0].dynamodb.NewImage.message.L
+        this.setState({ audioResult })
+      }
     })
   }
 
@@ -91,8 +93,8 @@ class App extends Component {
       }}>
 
 
-        {!this.state.queryResults.length && <BackgroundAudio audioSource={this.state.chosenBackgroundImage} />}
-        {this.state.queryResults.length && <PlaySong queryResults={this.state.queryResults} removeSong={this.removeSong}/>}
+        {!this.state.audioResult.length && <BackgroundAudio audioSource={this.state.chosenBackgroundImage} />}
+        {this.state.audioResult.length && <PlaySong audioResult={this.state.audioResult} removeSong={this.removeSong} />}
 
         {this.renderWire()}
 
@@ -159,7 +161,7 @@ class App extends Component {
 
   }
   removeSong = () => {
-    this.setState({queryResults: []})
+    this.setState({ audioResult: [] })
   }
 }
 
