@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'aframe';
-import { Entity, Scene } from 'aframe-react';
-import ReactDOM from 'react-dom';
+import { Entity } from 'aframe-react';
 
 import HomeSphere from './HomePageSphere'
 
@@ -13,7 +12,7 @@ class HomePage extends Component {
         position='0 0.76 -0.9'
         transparent='true'
         height='1'
-        width='2'
+        width='2.2'
         src='http://res.cloudinary.com/dnuwifia4/image/upload/v1525873823/VROOM-1.png'
       />
       {this.props.panoBackgrounds.map((image, i) => {
@@ -25,7 +24,7 @@ class HomePage extends Component {
       <Entity
         visible={this.props.renderPreview}
         primitive='a-cylinder'
-        radius='0.09'
+        radius='0.06'
         height='0.02'
         rotation='180 -90 90'
         src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525356822/like-outline.png'

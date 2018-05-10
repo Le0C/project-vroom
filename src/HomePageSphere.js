@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import 'aframe';
-import { Entity, Scene } from 'aframe-react';
-import ReactDOM from 'react-dom';
+import { Entity } from 'aframe-react';
 
 
 class HomeSphere extends Component {
@@ -38,7 +37,7 @@ class HomeSphere extends Component {
           height='0.02'
           rotation='180 -90 90'
           src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525776321/question.png'
-          position={`0 0.35 0.2`}
+          position={`0 0.28 0.2`}
           events={{
             mouseenter: () => {
               this.props.setPanoImage(this.props.image)

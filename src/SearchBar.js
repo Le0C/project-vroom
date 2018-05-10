@@ -24,11 +24,9 @@ class SearchBar extends Component {
   render() {
 
     if (this.state.searchImages.length === 0 && this.state.searchVideos.length === 0) {
-      console.log('into null block')
       return null;
     }
     if (this.state.searchImages.length > 0 && this.state.searchVideos.length === 0) {
-      console.log('into imgae render block')
       return (
         <Entity>
           {this.state.searchImages.map((item, i) => {
@@ -38,16 +36,14 @@ class SearchBar extends Component {
       )
     }
     if (this.state.searchVideos.length > 0) {
-      console.log('into correct if block')
       return (<Entity>
         {this.state.searchVideos.map((item, i) => {
-
+          if (i >= 1) return
           return this.renderSearches(i, item, 'a-video')
         })}
 
       </Entity>)
     } else {
-      console.log('last bloc')
       return null
     }
   }

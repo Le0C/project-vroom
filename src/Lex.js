@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import annyang from "annyang";
 import "aframe";
-import { Entity, Scene } from "aframe-react";
 
 import AWS from "aws-sdk";
 
@@ -36,7 +35,6 @@ class Lex extends Component {
   handleAudioControlClick = e => {
     annyang.pause();
     const { bot, accessId, secretKey, changeMessageTo } = this.props;
-    const that = this;
     AWS.config.credentials = new AWS.Credentials(accessId, secretKey, null);
     AWS.config.region = "eu-west-1";
 
