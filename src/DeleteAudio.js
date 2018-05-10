@@ -6,7 +6,7 @@ class DeleteAudio extends Component {
   render() {
     return (
       <Sound
-        url="http://res.cloudinary.com/dnuwifia4/video/upload/v1525796279/62139__tkshredder__zoomin.wav"
+        url="https://res.cloudinary.com/dnuwifia4/video/upload/v1525796279/62139__tkshredder__zoomin.wav"
         playStatus={Sound.status.PLAYING}
         autoLoad="true"
         volume="50"

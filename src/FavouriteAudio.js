@@ -6,7 +6,7 @@ class FavouriteAudio extends Component {
   render() {
     return (
       <Sound
-        url="http://res.cloudinary.com/dnuwifia4/video/upload/v1525796261/51702__bristolstories__ping.mp3"
+        url="https://res.cloudinary.com/dnuwifia4/video/upload/v1525796261/51702__bristolstories__ping.mp3"
         playStatus={Sound.status.PLAYING}
         autoLoad="true"
         volume="50"
