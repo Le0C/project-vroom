@@ -13,7 +13,7 @@ class HomePage extends Component {
         transparent='true'
         height='1'
         width='2.2'
-        src='http://res.cloudinary.com/dnuwifia4/image/upload/v1525873823/VROOM-1.png'
+        src='https://res.cloudinary.com/dnuwifia4/image/upload/v1525873823/VROOM-1.png'
       />
       {this.props.panoBackgrounds.map((image, i) => {
         return <Entity>
