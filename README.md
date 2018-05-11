@@ -1,14 +1,18 @@
 ### vRoom
 
-#### _ a virtual 3d mood board controlled by voice_
+####  a virtual 3d mood board controlled by voice
 
-vRoom is a serverless voice controlled 3d mood board creator.
+vRoom is a serverless voice controlled 3d mood board creator - https://vimeo.com/269142586
 
 Use the wake word 'Hello' to activate our chatbot Vee. You can then request images by saying 'I want to see some images' or 'Find me some images' - Vee will send a request to the PixaBay API which will return images related to your search term.
 
 Images can be 'liked', deleted, and moved in 3d space.
 
-*unstable*  You can also ask Vee to play a song with the command 'Play me a song' - Vee will send a request to the YouTube API and return the most popular video related to your request and play the audio for this video. Please note that currently Vee struggles with longer search terms - try and limit your request to one or two words.
+*unstable*  You can also ask Vee to play a song with the command 'Play me a song' - Vee will send a request to the YouTube API and return the most popular video related to your request and play the audio for this video. 
+
+Please note that currently Vee struggles with longer search terms - please limit your request to one or two words.
+
+Our app is not yet optimised for mobile browsers, and will not work on iOs devices.
 
 #### Voice Commands
 
